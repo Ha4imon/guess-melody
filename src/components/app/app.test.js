@@ -4,7 +4,13 @@ import {App} from "./app";
 
 it(`Компонент app рендерится`, () => {
   const tree = renderer
-    .create(<App mistakes={0} gameTime={0} startGameHandler={jest.fn()} />)
+    .create(
+        <App
+          gameMistakes={0}
+          gameTime={0}
+          gameQuestions={[]}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -30,20 +30,20 @@ const questions = [
     type: `artist`,
     song: {
       artist: `Jim Snow`,
-      src: `stroka`,
+      src: `http://placehold.it/134x134`,
     },
     answers: [
       {
-        picture: `stroka`,
+        picture: `http://placehold.it/134x134`,
         artist: `John Snow`
       },
       {
-        picture: `stroka`,
+        picture: `http://placehold.it/134x134`,
         artist: `Jack Snow`
       },
       {
-        picture: `stroka`,
-        artist: `Jim Snow`
+        picture: `http://placehold.it/134x134`,
+        artist: `Джек`
       },
     ]
   }
