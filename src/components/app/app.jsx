@@ -28,7 +28,7 @@ class App extends PureComponent {
         return (
           <GameGenre
             question={gameQuestions[question]}
-            onUserAnswer={clickHandler}
+            onAnswer={clickHandler}
           />
         );
       case `artist`:

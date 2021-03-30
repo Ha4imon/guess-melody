@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const GameGenre = (props) => {
-  const {question, onUserAnswer} = props;
+  const {question, onAnswer} = props;
 
   return (
     <section className="game game--genre">
@@ -35,7 +35,7 @@ const GameGenre = (props) => {
           className="game__tracks"
           onSubmit={(evt) => {
             evt.preventDefault();
-            onUserAnswer();
+            onAnswer();
           }}
         >
           {question.answers.map((item, index) => {
@@ -77,7 +77,7 @@ const GameGenre = (props) => {
 };
 
 GameGenre.propTypes = {
-  onUserAnswer: PropTypes.func.isRequired,
+  onAnswer: PropTypes.func.isRequired,
   question: PropTypes.exact({
     type: PropTypes.oneOf([`genre`]),
     genre: PropTypes.oneOf([`rock`, `jazz`]),
