@@ -9,19 +9,23 @@ const questions = [
     genre: `rock`,
     answers: [
       {
-        src: `stroka`,
+        id: `id-genre1`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
         genre: `rock`,
       },
       {
-        src: `stroka`,
+        id: `id-genre2`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
         genre: `jazz`,
       },
       {
-        src: `stroka`,
+        id: `id-genre3`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
         genre: `pop`,
       },
       {
-        src: `stroka`,
+        id: `id-genre4`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
         genre: `rock`,
       },
     ],
@@ -34,14 +38,17 @@ const questions = [
     },
     answers: [
       {
+        id: `id-artist1`,
         picture: `http://placehold.it/134x134`,
         artist: `John Snow`
       },
       {
+        id: `id-artist2`,
         picture: `http://placehold.it/134x134`,
         artist: `Jack Snow`
       },
       {
+        id: `id-artist3`,
         picture: `http://placehold.it/134x134`,
         artist: `Джек`
       },

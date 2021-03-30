@@ -12,8 +12,7 @@ parserOptions:
   ecmaVersion: 6
   sourceType: module
 
-parser: '@babel/eslint-parser'
-plugins: ['react']
+plugins: ['react', "@babel/plugin-proposal-class-properties"]
 
 settings:
   react:

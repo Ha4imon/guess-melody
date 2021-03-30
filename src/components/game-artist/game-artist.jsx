@@ -87,6 +87,7 @@ GameArtist.propTypes = {
     }),
     answers: PropTypes.arrayOf(
         PropTypes.exact({
+          id: PropTypes.string.isRequired,
           picture: PropTypes.string.isRequired,
           artist: PropTypes.string.isRequired,
         })

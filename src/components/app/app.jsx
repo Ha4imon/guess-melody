@@ -1,15 +1,15 @@
-import React, {PureComponent} from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
-import {GameGenre} from "../game-genre/game-genre.jsx";
-import {GameArtist} from "../game-artist/game-artist.jsx";
+import { WelcomeScreen } from "../welcome-screen/welcome-screen.jsx";
+import { GameGenre } from "../game-genre/game-genre.jsx";
+import { GameArtist } from "../game-artist/game-artist.jsx";
 
 class App extends PureComponent {
   static getScreen(props, state, clickHandler) {
-    const {question} = state;
+    const { question } = state;
 
     if (question === -1) {
-      const {gameTime, gameMistakes} = props;
+      const { gameTime, gameMistakes } = props;
 
       return (
         <WelcomeScreen
@@ -20,7 +20,7 @@ class App extends PureComponent {
       );
     }
 
-    const {gameQuestions} = props;
+    const { gameQuestions } = props;
     const currentQuestion = gameQuestions[question];
 
     switch (currentQuestion.type) {
@@ -52,53 +52,54 @@ class App extends PureComponent {
   }
 
   render() {
-    const userAnswerHandler = () => {
-      this.setState((prevState) => {
-        const {gameQuestions} = this.props;
-        const nextIndex = prevState.question + 1;
-        const isEnd = nextIndex >= gameQuestions.length;
-
-        return {
-          ...prevState,
-          question: !isEnd ? nextIndex : -1,
-        };
-      });
-    };
-
-    return App.getScreen(this.props, this.state, userAnswerHandler);
+    return App.getScreen(this.props, this.state, this._userAnswerHandler);
   }
+
+  _userAnswerHandler = () => {
+    this.setState((prevState) => {
+      const { gameQuestions } = this.props;
+      const nextIndex = prevState.question + 1;
+      const isEnd = nextIndex >= gameQuestions.length;
+
+      return {
+        question: !isEnd ? nextIndex : -1,
+      };
+    });
+  };
 }
 
 App.propTypes = {
   gameTime: PropTypes.number.isRequired,
   gameMistakes: PropTypes.number.isRequired,
   gameQuestions: PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.exact({
-          type: PropTypes.oneOf([`genre`]),
-          genre: PropTypes.oneOf([`rock`, `jazz`]),
-          answers: PropTypes.arrayOf(
-              PropTypes.exact({
-                src: PropTypes.string.isRequired,
-                genre: PropTypes.oneOf([`rock`, `jazz`, `pop`]).isRequired,
-              })
-          ),
-        }),
-        PropTypes.exact({
-          type: PropTypes.oneOf([`artist`]),
-          song: PropTypes.exact({
-            artist: PropTypes.string.isRequired,
+    PropTypes.oneOfType([
+      PropTypes.exact({
+        type: PropTypes.oneOf([`genre`]),
+        genre: PropTypes.oneOf([`rock`, `jazz`]),
+        answers: PropTypes.arrayOf(
+          PropTypes.exact({
+            id: PropTypes.string.isRequired,
             src: PropTypes.string.isRequired,
-          }),
-          answers: PropTypes.arrayOf(
-              PropTypes.exact({
-                picture: PropTypes.string.isRequired,
-                artist: PropTypes.string.isRequired,
-              })
-          ),
+            genre: PropTypes.oneOf([`rock`, `jazz`, `pop`]).isRequired,
+          })
+        ),
+      }),
+      PropTypes.exact({
+        type: PropTypes.oneOf([`artist`]),
+        song: PropTypes.exact({
+          artist: PropTypes.string.isRequired,
+          src: PropTypes.string.isRequired,
         }),
-      ])
+        answers: PropTypes.arrayOf(
+          PropTypes.exact({
+            id: PropTypes.string.isRequired,
+            picture: PropTypes.string.isRequired,
+            artist: PropTypes.string.isRequired,
+          })
+        ),
+      }),
+    ])
   ).isRequired,
 };
 
-export {App};
+export { App };
