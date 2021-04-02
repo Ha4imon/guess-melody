@@ -12,7 +12,7 @@ parserOptions:
   ecmaVersion: 6
   sourceType: module
 
-plugins: ['react', "@babel/plugin-proposal-class-properties"]
+plugins: ['react']
 
 settings:
   react:

@@ -1,14 +1,18 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import { AudioPlayer } from "../audio-player/audio-player.jsx";
+import {AudioPlayer} from "../audio-player/audio-player.jsx";
 
 class GameGenre extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      activePlayer: -1,
+    };
   }
 
   render() {
-    const { question, onAnswer } = this.props;
+    const {question, onAnswer} = this.props;
 
     return (
       <section className="game game--genre">
@@ -47,7 +51,16 @@ class GameGenre extends PureComponent {
             {question.answers.map((item, index) => {
               return (
                 <div className="track" key={item.id}>
-                  <AudioPlayer src={item.src} />
+                  <AudioPlayer
+                    src={item.src}
+                    isPlaying={this.state.activePlayer === index}
+                    onButtonClick={() => {
+                      this.setState({
+                        activePlayer:
+                          this.state.activePlayer === index ? -1 : index,
+                      });
+                    }}
+                  />
                   <div className="game__answer">
                     <input
                       className="game__input visually-hidden"
@@ -83,13 +96,13 @@ GameGenre.propTypes = {
     type: PropTypes.oneOf([`genre`]),
     genre: PropTypes.oneOf([`rock`, `jazz`]),
     answers: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired,
-        genre: PropTypes.oneOf([`rock`, `jazz`, `pop`]).isRequired,
-      })
+        PropTypes.exact({
+          id: PropTypes.string.isRequired,
+          src: PropTypes.string.isRequired,
+          genre: PropTypes.oneOf([`rock`, `jazz`, `pop`]).isRequired,
+        })
     ),
   }).isRequired,
 };
 
-export { GameGenre };
+export {GameGenre};

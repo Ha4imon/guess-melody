@@ -1,5 +1,5 @@
 module.exports = {
-  presets: [
+  "presets": [
     `@babel/preset-react`,
     [
       `@babel/preset-env`,
@@ -12,7 +12,7 @@ module.exports = {
   ],
   "plugins": [
     [
-      "@babel/plugin-proposal-class-properties",
+      `@babel/plugin-proposal-class-properties`,
       {
         "loose": true
       }

@@ -10,16 +10,53 @@ it(`Кнопка начала игры запускает новую игру`, 
     {
       type: `genre`,
       genre: `rock`,
-      answers: [],
+      answers: [
+        {
+          id: `id-genre1`,
+          src: `audio/sovet-russia.oga`,
+          genre: `rock`,
+        },
+        {
+          id: `id-genre2`,
+          src: `audio/sovet-russia.oga`,
+          genre: `jazz`,
+        },
+        {
+          id: `id-genre3`,
+          src: `audio/sovet-russia.oga`,
+          genre: `pop`,
+        },
+        {
+          id: `id-genre4`,
+          src: `audio/sovet-russia.oga`,
+          genre: `rock`,
+        },
+      ],
     },
     {
       type: `artist`,
       song: {
-        artist: ``,
-        src: ``,
+        artist: `Jim Snow`,
+        src: `audio/sovet-russia.oga`,
       },
-      answers: [],
-    },
+      answers: [
+        {
+          id: `id-artist1`,
+          picture: `http://placehold.it/134x134`,
+          artist: `John Snow`
+        },
+        {
+          id: `id-artist2`,
+          picture: `http://placehold.it/134x134`,
+          artist: `Jack Snow`
+        },
+        {
+          id: `id-artist3`,
+          picture: `http://placehold.it/134x134`,
+          artist: `Джек`
+        },
+      ]
+    }
   ];
 
   const app = mount(

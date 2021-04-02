@@ -10,22 +10,22 @@ const questions = [
     answers: [
       {
         id: `id-genre1`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
+        src: `audio/sovet-russia.oga`,
         genre: `rock`,
       },
       {
         id: `id-genre2`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
+        src: `audio/sovet-russia.oga`,
         genre: `jazz`,
       },
       {
         id: `id-genre3`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
+        src: `audio/sovet-russia.oga`,
         genre: `pop`,
       },
       {
         id: `id-genre4`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga`,
+        src: `audio/sovet-russia.oga`,
         genre: `rock`,
       },
     ],
@@ -34,7 +34,7 @@ const questions = [
     type: `artist`,
     song: {
       artist: `Jim Snow`,
-      src: `http://placehold.it/134x134`,
+      src: `audio/sovet-russia.oga`,
     },
     answers: [
       {
@@ -56,4 +56,19 @@ const questions = [
   }
 ];
 
-export {gameSettings, questions};
+const createNodeMock = function (element) {
+  if (element.type === `audio`) {
+    // This is your fake DOM node for <p>.
+    // Feel free to add any stub methods, e.g. focus() or any
+    // other methods necessary to prevent crashes in your components.
+    return {
+      src: ``,
+    };
+  }
+  // You can return any object from this method for any type of DOM component.
+  // React will use it as a ref instead of a DOM node when snapshot testing.
+  return null;
+};
+
+
+export {gameSettings, questions, createNodeMock};

@@ -67,24 +67,89 @@ exports[`Компонент game-artist рендерится 1`] = `
     <div
       className="game__track"
     >
+      <button
+        className="track__button track__button--play"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      />
       <div
-        className="track"
+        className="track__status"
       >
-        <button
-          className="track__button track__button--play"
-          type="button"
-        />
-        <div
-          className="track__status"
-        >
-          <audio />
-        </div>
+        <audio />
       </div>
     </div>
     <form
       className="game__artist"
       onChange={[Function]}
-    />
+    >
+      <div
+        className="artist"
+      >
+        <input
+          className="artist__input visually-hidden"
+          id="artist-undefined-0"
+          name="answer"
+          type="radio"
+          value="artist-undefined-0"
+        />
+        <label
+          className="artist__name"
+          htmlFor="artist-undefined-0"
+        >
+          <img
+            alt="John Snow"
+            className="artist__picture"
+            src="http://placehold.it/134x134"
+          />
+          Пелагея
+        </label>
+      </div>
+      <div
+        className="artist"
+      >
+        <input
+          className="artist__input visually-hidden"
+          id="artist-undefined-1"
+          name="answer"
+          type="radio"
+          value="artist-undefined-1"
+        />
+        <label
+          className="artist__name"
+          htmlFor="artist-undefined-1"
+        >
+          <img
+            alt="Jack Snow"
+            className="artist__picture"
+            src="http://placehold.it/134x134"
+          />
+          Пелагея
+        </label>
+      </div>
+      <div
+        className="artist"
+      >
+        <input
+          className="artist__input visually-hidden"
+          id="artist-undefined-2"
+          name="answer"
+          type="radio"
+          value="artist-undefined-2"
+        />
+        <label
+          className="artist__name"
+          htmlFor="artist-undefined-2"
+        >
+          <img
+            alt="Джек"
+            className="artist__picture"
+            src="http://placehold.it/134x134"
+          />
+          Пелагея
+        </label>
+      </div>
+    </form>
   </section>
 </section>
 `;

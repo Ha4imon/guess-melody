@@ -7,11 +7,11 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "test": "npm run eslint && jest"
+    "test": "npm run eslint && jest",
+    "jest": "jest"
   },
   "devDependencies": {
     "@babel/core": "7.13.10",
-    "@babel/plugin-proposal-class-properties": "7.13.0",
     "@babel/preset-env": "7.13.10",
     "@babel/preset-react": "7.12.13",
     "babel-loader": "8.2.2",
@@ -26,12 +26,17 @@
     "webpack-cli": "3.2.3",
     "webpack-dev-server": "3.1.14"
   },
-  "engines": {
-    "node": "10"
-  },
   "dependencies": {
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^utils(.*)$": "<rootDir>/src/utils$1"
+    }
   }
 }

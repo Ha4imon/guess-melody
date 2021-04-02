@@ -8,9 +8,9 @@ it(`Компонент game-genre рендерится`, () => {
     genre: `rock`,
     answers: [],
   };
-  const tree = renderer.create(
-      <GameGenre question={question} onAnswer={jest.fn()} />
-  ).toJSON();
+  const tree = renderer
+    .create(<GameGenre question={question} onAnswer={jest.fn()} />)
+    .toJSON();
 
   expect(tree).toMatchSnapshot();
 });
