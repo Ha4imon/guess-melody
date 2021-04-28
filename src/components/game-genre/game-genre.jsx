@@ -8,11 +8,20 @@ class GameGenre extends PureComponent {
 
     this.state = {
       activePlayer: -1,
+      checkboxValues: [],
     };
+
+    this._checboxHandler = this._checboxHandler.bind(this);
+    this._activePlayerHandler = this._activePlayerHandler.bind(this);
+    this._formSubmitHandler = this._formSubmitHandler.bind(this);
+  }
+
+  componentWillUnmount() {
+    console.log(112);
   }
 
   render() {
-    const {question, onAnswer} = this.props;
+    const {question} = this.props;
 
     return (
       <section className="game game--genre">
@@ -41,33 +50,25 @@ class GameGenre extends PureComponent {
 
         <section className="game__screen">
           <h2 className="game__title">Выберите {question.genre} треки</h2>
-          <form
-            className="game__tracks"
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              onAnswer();
-            }}
-          >
+          <form className="game__tracks" onSubmit={this._formSubmitHandler}>
             {question.answers.map((item, index) => {
               return (
-                <div className="track" key={item.id}>
+                <div className="track" key={`${item.id}${index}`}>
                   <AudioPlayer
                     src={item.src}
                     isPlaying={this.state.activePlayer === index}
                     onButtonClick={() => {
-                      this.setState({
-                        activePlayer:
-                          this.state.activePlayer === index ? -1 : index,
-                      });
+                      this._activePlayerHandler(index);
                     }}
                   />
                   <div className="game__answer">
                     <input
                       className="game__input visually-hidden"
                       type="checkbox"
-                      name="answer"
-                      value={`answer-${item.genre}-${index}`}
+                      name={`answer-${item.genre}-${index}`}
+                      value={item.genre}
                       id={`answer-${item.genre}-${index}`}
+                      onChange={(evt) => this._checboxHandler(evt, index)}
                     />
                     <label
                       className="game__check"
@@ -87,6 +88,38 @@ class GameGenre extends PureComponent {
         </section>
       </section>
     );
+  }
+
+  _activePlayerHandler(index) {
+    this.setState((prevState) => ({
+      activePlayer: prevState.activePlayer === index ? -1 : index,
+    }));
+  }
+
+  _checboxHandler(evt, index) {
+    const {checkboxValues} = this.state;
+
+    const test = checkboxValues.map((item) => {
+      return item;
+    });
+    test[index] = evt.target.checked;
+    console.log(this.state);
+    this.setState({test});
+  }
+
+  _formSubmitHandler(evt) {
+    evt.preventDefault();
+
+    const {checkboxValues} = this.state;
+    const {onAnswer, question} = this.props;
+
+    console.log(checkboxValues);
+
+    const userAnswers = question.answers.map((item, index) => {
+      return checkboxValues[index] === true ? checkboxValues[index] : false;
+    });
+
+    onAnswer(userAnswers, question);
   }
 }
 

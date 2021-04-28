@@ -31,6 +31,58 @@ const questions = [
     ],
   },
   {
+    type: `genre`,
+    genre: `jazz`,
+    answers: [
+      {
+        id: `id-genre5`,
+        src: `audio/sovet-russia.oga`,
+        genre: `rock`,
+      },
+      {
+        id: `id-genre6`,
+        src: `audio/sovet-russia.oga`,
+        genre: `jazz`,
+      },
+      {
+        id: `id-genre7`,
+        src: `audio/sovet-russia.oga`,
+        genre: `pop`,
+      },
+      {
+        id: `id-genre8`,
+        src: `audio/sovet-russia.oga`,
+        genre: `rock`,
+      },
+    ],
+  },
+  {
+    type: `genre`,
+    genre: `rock`,
+    answers: [
+      {
+        id: `id-genre1`,
+        src: `audio/sovet-russia.oga`,
+        genre: `rock`,
+      },
+      {
+        id: `id-genre2`,
+        src: `audio/sovet-russia.oga`,
+        genre: `jazz`,
+      },
+      {
+        id: `id-genre3`,
+        src: `audio/sovet-russia.oga`,
+        genre: `pop`,
+      },
+      {
+        id: `id-genre4`,
+        src: `audio/sovet-russia.oga`,
+        genre: `rock`,
+      },
+    ],
+  },
+  {
     type: `artist`,
     song: {
       artist: `Jim Snow`,
@@ -50,7 +102,7 @@ const questions = [
       {
         id: `id-artist3`,
         picture: `http://placehold.it/134x134`,
-        artist: `Джек`
+        artist: `Jim Snow`
       },
     ]
   }

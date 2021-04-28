@@ -9,10 +9,12 @@ class GameArtist extends PureComponent {
     this.state = {
       isPlayerPlaiyng: false,
     };
+
+    this._formSubmitHandler = this._formSubmitHandler.bind(this);
   }
 
   render() {
-    const {question, onAnswer} = this.props;
+    const {question} = this.props;
 
     return (
       <section className="game game--artist">
@@ -53,21 +55,15 @@ class GameArtist extends PureComponent {
             />
           </div>
 
-          <form
-            className="game__artist"
-            onChange={(evt) => {
-              evt.preventDefault();
-              onAnswer();
-            }}
-          >
+          <form className="game__artist" onChange={this._formSubmitHandler}>
             {question.answers.map((item, index) => {
               return (
                 <div className="artist" key={item.id}>
                   <input
                     className="artist__input visually-hidden"
                     type="radio"
-                    name="answer"
-                    value={`artist-${item.type}-${index}`}
+                    name={`artist-${item.type}-${index}`}
+                    value={item.artist}
                     id={`artist-${item.type}-${index}`}
                   />
                   <label
@@ -88,6 +84,15 @@ class GameArtist extends PureComponent {
         </section>
       </section>
     );
+  }
+
+  _formSubmitHandler(evt) {
+    evt.preventDefault();
+
+    const {onAnswer, question} = this.props;
+    const userAnswer = evt.target.value;
+
+    onAnswer(userAnswer, question);
   }
 }
 
