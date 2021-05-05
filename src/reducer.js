@@ -3,11 +3,7 @@ const isArtistAnswerCorrect = (userAnswer, question) => {
 };
 
 const isGenreAnswerCorrect = (userAnswer, question) => {
-
-  // console.log(userAnswer);
   return userAnswer.every((it, i) => {
-
-    // console.log(question.answers[i].genre === question.genre);
     return it === (question.answers[i].genre === question.genre);
   });
 };
@@ -29,8 +25,6 @@ const ActionCreator = {
         answerIsCorrect = isGenreAnswerCorrect(userAnswer, question);
         break;
     }
-
-    // console.log(answerIsCorrect);
 
     if (!answerIsCorrect && mistakes + 1 >= maxMistakes) {
       return {

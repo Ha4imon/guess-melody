@@ -12,7 +12,6 @@ class App extends PureComponent {
     super(props);
 
     this._getScreen = this._getScreen.bind(this);
-    // this._userAnswerHandler = this._userAnswerHandler.bind(this);
   }
 
   render() {
@@ -27,6 +26,7 @@ class App extends PureComponent {
 
       return (
         <WelcomeScreen
+          key={step}
           time={gameTime}
           mistakes={gameMistakes}
           onStartButtonClick={onWelcomeScreenClick}
@@ -41,6 +41,7 @@ class App extends PureComponent {
       case `genre`:
         return (
           <GameGenre
+            key={step}
             question={gameQuestions[step]}
             onAnswer={(userAnswer, question) => {
               onUserAnswer(userAnswer, question, mistakes, gameMistakes);
@@ -50,6 +51,7 @@ class App extends PureComponent {
       case `artist`:
         return (
           <GameArtist
+            key={step}
             question={gameQuestions[step]}
             onAnswer={(userAnswer, question) => {
               onUserAnswer(userAnswer, question, mistakes, gameMistakes);
@@ -60,19 +62,6 @@ class App extends PureComponent {
 
     return null;
   }
-
-  // _userAnswerHandler() {
-  //   this.setState((prevState) => {
-  //     console.log(prevState);
-  //     const {gameQuestions} = this.props;
-  //     const nextIndex = prevState.step + 1;
-  //     const isEnd = nextIndex >= gameQuestions.length;
-
-  //     return {
-  //       question: !isEnd ? nextIndex : -1,
-  //     };
-  //   });
-  // }
 }
 
 App.propTypes = {

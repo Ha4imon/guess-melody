@@ -8,16 +8,12 @@ class GameGenre extends PureComponent {
 
     this.state = {
       activePlayer: -1,
-      checkboxValues: [],
+      checkboxValues: new Array(props.question.answers.length).fill(false),
     };
 
     this._checboxHandler = this._checboxHandler.bind(this);
     this._activePlayerHandler = this._activePlayerHandler.bind(this);
     this._formSubmitHandler = this._formSubmitHandler.bind(this);
-  }
-
-  componentWillUnmount() {
-    console.log(112);
   }
 
   render() {
@@ -99,12 +95,11 @@ class GameGenre extends PureComponent {
   _checboxHandler(evt, index) {
     const {checkboxValues} = this.state;
 
-    const test = checkboxValues.map((item) => {
-      return item;
-    });
-    test[index] = evt.target.checked;
-    console.log(this.state);
-    this.setState({test});
+    const userAnswers = checkboxValues.slice(0);
+
+    userAnswers[index] = evt.target.checked;
+
+    this.setState({checkboxValues: userAnswers});
   }
 
   _formSubmitHandler(evt) {
@@ -113,13 +108,7 @@ class GameGenre extends PureComponent {
     const {checkboxValues} = this.state;
     const {onAnswer, question} = this.props;
 
-    console.log(checkboxValues);
-
-    const userAnswers = question.answers.map((item, index) => {
-      return checkboxValues[index] === true ? checkboxValues[index] : false;
-    });
-
-    onAnswer(userAnswers, question);
+    onAnswer(checkboxValues, question);
   }
 }
 
