@@ -12,7 +12,7 @@ class GameArtist extends PureComponent {
   }
 
   render() {
-    const {question, onAnswer} = this.props;
+    const {question, onAnswer, children} = this.props;
 
     return (
       <section className="game game--artist">
@@ -26,17 +26,7 @@ class GameArtist extends PureComponent {
             />
           </a>
 
-          <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-            <span className="timer__mins">05</span>
-            <span className="timer__dots">:</span>
-            <span className="timer__secs">00</span>
-          </div>
-
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {children}
         </header>
 
         <section className="game__screen">
@@ -91,6 +81,7 @@ class GameArtist extends PureComponent {
 }
 
 GameArtist.propTypes = {
+  children: PropTypes.element.isRequired,
   onAnswer: PropTypes.func.isRequired,
   question: PropTypes.exact({
     type: PropTypes.oneOf([`artist`]),

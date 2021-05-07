@@ -17,7 +17,7 @@ class GameGenre extends PureComponent {
   }
 
   render() {
-    const {question} = this.props;
+    const {question, children} = this.props;
 
     return (
       <section className="game game--genre">
@@ -31,17 +31,7 @@ class GameGenre extends PureComponent {
             />
           </a>
 
-          <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-            <span className="timer__mins">05</span>
-            <span className="timer__dots">:</span>
-            <span className="timer__secs">00</span>
-          </div>
-
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {children}
         </header>
 
         <section className="game__screen">
@@ -113,6 +103,7 @@ class GameGenre extends PureComponent {
 }
 
 GameGenre.propTypes = {
+  children: PropTypes.element.isRequired,
   onAnswer: PropTypes.func.isRequired,
   question: PropTypes.exact({
     type: PropTypes.oneOf([`genre`]),

@@ -42,6 +42,7 @@ const ActionCreator = {
 const initialState = {
   step: -1,
   mistakes: 0,
+  time: 5,
 };
 
 const reducer = (state = initialState, action) => {

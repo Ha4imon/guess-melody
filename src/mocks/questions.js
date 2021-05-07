@@ -1,8 +1,3 @@
-const gameSettings = {
-  mistakes: 3,
-  time: 5
-};
-
 const questions = [
   {
     type: `genre`,
@@ -108,4 +103,4 @@ const questions = [
   }
 ];
 
-export {gameSettings, questions};
+export {questions};
