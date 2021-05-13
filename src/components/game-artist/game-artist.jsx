@@ -81,7 +81,7 @@ class GameArtist extends PureComponent {
 }
 
 GameArtist.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   onAnswer: PropTypes.func.isRequired,
   question: PropTypes.exact({
     type: PropTypes.oneOf([`artist`]),

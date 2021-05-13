@@ -7,17 +7,45 @@ import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
 import {GameGenre} from "../game-genre/game-genre.jsx";
 import {GameArtist} from "../game-artist/game-artist.jsx";
 import {Mistakes} from "../mistakes/mistakes.jsx";
-import {Timer} from '../timer/timer.jsx';
+import {Timer} from "../timer/timer.jsx";
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = {
+      time: 5 * 60,
+    };
+
     this._getScreen = this._getScreen.bind(this);
+    this._startTimer = this._startTimer.bind(this);
   }
 
   render() {
     return this._getScreen(this.props);
+  }
+
+  _startTimer() {
+    const {tickTimer} = this.props;
+    let {time} = this.state;
+
+    const defaultTime = time;
+
+    const timerId = setInterval(() => {
+      time = this.state.time;
+      tickTimer(time);
+
+      this.setState((prevState) => ({
+        time: prevState.time - 1,
+      }));
+
+      if (time <= 0) {
+        this.setState({
+          time: defaultTime,
+        });
+        clearInterval(timerId);
+      }
+    }, 1000);
   }
 
   _getScreen(props) {
@@ -27,8 +55,9 @@ class App extends PureComponent {
       onUserAnswer,
       mistakes,
       gameQuestions,
-      time,
     } = props;
+
+    const {time} = this.state;
 
     if (step === -1) {
       return (
@@ -36,7 +65,10 @@ class App extends PureComponent {
           key={step}
           time={time}
           mistakes={mistakes}
-          onStartButtonClick={onWelcomeScreenClick}
+          onStartButtonClick={() => {
+            onWelcomeScreenClick();
+            this._startTimer();
+          }}
         />
       );
     }
@@ -53,7 +85,7 @@ class App extends PureComponent {
               onUserAnswer(userAnswer, question, mistakes);
             }}
           >
-            <Timer time={time}/>
+            <Timer time={time} />
             <Mistakes count={mistakes} />
           </GameGenre>
         );
@@ -66,7 +98,7 @@ class App extends PureComponent {
               onUserAnswer(userAnswer, question, mistakes);
             }}
           >
-            <Timer time={time}/>
+            <Timer time={time} />
             <Mistakes count={mistakes} />
           </GameArtist>
         );
@@ -79,8 +111,8 @@ class App extends PureComponent {
 App.propTypes = {
   step: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
-  time: PropTypes.number.isRequired,
   onWelcomeScreenClick: PropTypes.func.isRequired,
+  tickTimer: PropTypes.func.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   gameQuestions: PropTypes.arrayOf(
       PropTypes.oneOfType([
@@ -117,11 +149,16 @@ const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     step: state.step,
     mistakes: state.mistakes,
-    time: state.time,
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  onWelcomeScreenClick: () => dispatch(ActionCreator.incrementStep()),
+  onWelcomeScreenClick: () => {
+    dispatch(ActionCreator.incrementStep());
+  },
+
+  tickTimer: (time) => {
+    dispatch(ActionCreator.decrementTime(time));
+  },
 
   onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
     dispatch(ActionCreator.incrementStep());

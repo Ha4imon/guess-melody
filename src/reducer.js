@@ -37,12 +37,25 @@ const ActionCreator = {
       payload: answerIsCorrect ? 0 : 1,
     };
   },
+
+  decrementTime: (time) => {
+    if (time > 0) {
+      return {
+        type: `DECREMENT_TIME`,
+        payload: time - 1,
+      };
+    }
+
+    return {
+      type: `RESET`
+    };
+  }
 };
 
 const initialState = {
   step: -1,
   mistakes: 0,
-  time: 5,
+  time: -1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -54,6 +67,10 @@ const reducer = (state = initialState, action) => {
     case `INCREMENT_MISTAKES`:
       return Object.assign({}, state, {
         mistakes: state.mistakes + action.payload,
+      });
+    case `DECREMENT_TIME`:
+      return Object.assign({}, state, {
+        time: action.payload,
       });
     case `RESET`:
       return Object.assign({}, initialState);
